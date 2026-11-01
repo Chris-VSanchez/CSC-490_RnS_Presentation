@@ -1,0 +1,95 @@
+/* ============ 1. Design tokens: every color lives here ============ */
+:root {
+  --bg: #f4f5f7;          /* slide background */
+  --card: #ffffff;        /* panels */
+  --ink: #12161d;         /* headings, main text */
+  --muted: #5f6773;       /* secondary text */
+  --line: #e2e5ea;        /* borders */
+  --accent: #0f766e;      /* teal: your brand color */
+  --accent-soft: #e3f3f1;
+  --blue: #2563eb;  --blue-soft: #e8efff;
+  --amber: #b45309; --amber-soft: #fdf1e1;
+  --warn: #c2410c;  --warn-soft: #fdece4;
+  --good: #15803d;  --good-soft: #e5f5ea;
+  --code-bg: #0f141b;
+  --code-ink: #dbe2ea;
+
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #0b0e13;    /* the dark letterbox around the slide */
+}
+
+/* ============ 2. Reset ============ */
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; height: 100%; }
+h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+button { font: inherit; }
+code, .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; }
+
+/* ============ 3. Text ============ */
+.kicker { text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+.lead { font-size: 19px; line-height: 1.55; color: var(--muted); }
+.note { color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+/* ============ 4. Boxes ============ */
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+
+.callout { border-left: 4px solid var(--warn); background: var(--warn-soft); padding: 12px 16px; border-radius: 0 12px 12px 0; font-size: 16px; line-height: 1.5; }
+.callout .h { font-weight: 700; margin-bottom: 4px; color: var(--warn); }
+.callout.good { border-color: var(--good); background: var(--good-soft); }
+.callout.good .h { color: var(--good); }
+.callout.info { border-color: var(--blue); background: var(--blue-soft); }
+.callout.info .h { color: var(--blue); }
+
+.chip { display: inline-flex; align-items: center; font-size: 13px; padding: 4px 11px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.chip.blue { background: var(--blue-soft); color: var(--blue); }
+.chip.amber { background: var(--amber-soft); color: var(--amber); }
+.chip.warn { background: var(--warn-soft); color: var(--warn); }
+.chip.good { background: var(--good-soft); color: var(--good); }
+
+/* ============ 5. Buttons ============ */
+.btn { border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 9px 16px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 15px; }
+.btn:hover { border-color: #c9ced6; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn.small { padding: 5px 11px; font-size: 13px; border-radius: 8px; }
+
+/* ============ 6. Code panel ============ */
+.code { background: var(--code-bg); color: var(--code-ink); border-radius: 14px; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 15px; line-height: 1.6; overflow: auto; padding: 14px 0; }
+.code .file { font-size: 12px; color: #8b97a7; padding: 0 18px 8px; margin-bottom: 6px; border-bottom: 1px solid #1f2933; }
+.code .ln { display: flex; padding: 0 18px; white-space: pre; }
+.code .ln .n { width: 30px; flex: none; color: #4b5563; text-align: right; margin-right: 16px; user-select: none; }
+.code .ln.hl { background: rgba(45, 212, 191, .13); box-shadow: inset 3px 0 0 #2dd4bf; }
+.code .ln.err { background: rgba(248, 113, 113, .14); box-shadow: inset 3px 0 0 #f87171; }
+.code .ln.dim { opacity: .35; }
+.code .ln.click { cursor: pointer; }
+.code .ln.click:hover { background: rgba(255, 255, 255, .05); }
+.tk-c { color: #6b7a8c; font-style: italic; }  /* comments */
+.tk-s { color: #a5d6a7; }                      /* strings */
+.tk-k { color: #c4a7ff; }                      /* keywords */
+.tk-n { color: #fbbf77; }                      /* numbers */
+.tk-f { color: #7dd3fc; }                      /* function calls */
+.tk-p { color: #f9a8d4; }                      /* JSX tags */
+
+/* ============ 7. Fake terminal ============ */
+.term { background: #0b0f14; color: #d1d9e0; border-radius: 14px; font-family: "JetBrains Mono", monospace; font-size: 14.5px; line-height: 1.55; padding: 14px 16px; overflow: auto; }
+.term .dots { display: flex; gap: 6px; margin-bottom: 10px; }
+.term .dots i { width: 11px; height: 11px; border-radius: 50%; background: #374151; }
+.term .prompt { color: #34d399; }
+.term .err { color: #fca5a5; }
+
+/* ============ 8. Animation ============ */
+@keyframes pop { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.pop { animation: pop .22s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop { animation: none; } }
+
+/* ============ 9. Extras for this deck ============ */
+.dot-btn { border: 0; background: none; padding: 0; cursor: pointer; font: inherit; color: inherit; text-align: center; }
+input[type="text"].field { width: 100%; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; background: #fff; color: var(--ink); }
+input[type="text"].field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.flash { animation: flash 0.9s ease-out; }
+@keyframes flash { from { background: #fef3c7; } to { background: transparent; } }
+@media (prefers-reduced-motion: reduce) { .flash { animation: none; } }
